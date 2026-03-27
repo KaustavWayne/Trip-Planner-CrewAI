@@ -1,0 +1,22 @@
+[project]
+name = "trip_planner_agent"
+version = "0.1.0"
+description = "Trip-Planner-Agent using crewAI"
+authors = [{ name = "Your Name", email = "you@example.com" }]
+requires-python = ">=3.10,<3.14"
+dependencies = []
+
+[project.scripts]
+trip_planner_agent = "trip_planner_agent.main:run"
+run_crew = "trip_planner_agent.main:run"
+train = "trip_planner_agent.main:train"
+replay = "trip_planner_agent.main:replay"
+test = "trip_planner_agent.main:test"
+run_with_trigger = "trip_planner_agent.main:run_with_trigger"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.crewai]
+type = "crew"

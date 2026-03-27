@@ -1,0 +1,104 @@
+intent_task:
+  description: >
+    Extract structured travel intent from: {user_query}
+
+    Return JSON:
+    {
+      "destination": "",
+      "budget_type": "",
+      "preferences": ""
+    }
+
+  expected_output: >
+    JSON with destination, budget_type, preferences.
+
+  agent: intent_mapper
+
+
+research_task:
+  description: >
+    Research {destination} using web search tool.
+
+    Combine everything into ONE query.
+
+    MUST include:
+    - Weather
+    - Attractions
+    - Cost
+
+  expected_output: >
+    Structured research output.
+
+  agent: researcher
+
+
+planning_task:
+  description: >
+    Create a {days}-day {budget}-budget trip plan for {destination}.
+
+    STRICT FORMAT:
+
+    ## 🌤️ Weather
+    Temperature: <value>
+    Condition: <value>
+
+    ## 💰 Budget
+
+    Currency: <LOCAL CURRENCY>
+
+    Stay Cost: <amount> (~USD equivalent)
+    Food Cost: <amount> (~USD equivalent)
+    Transport Cost: <amount> (~USD equivalent)
+
+    Total Cost:
+    - Local Currency: <amount>
+    - USD Equivalent: <amount>
+
+    ## 📍 Places
+
+    1. Place name  
+       - Short description  
+
+    2. Place name  
+       - Short description  
+
+    3. Place name  
+       - Short description  
+
+    ## 🏨 Hotels
+
+    - Hotel 1 (budget type)
+    - Hotel 2 (budget type)
+
+    ## 🗓️ Itinerary
+
+    You MUST generate EXACTLY {days} days.
+
+    ### Day 1
+
+    Morning:
+    - Visit <place>
+    - Distance: <km>
+    - Transport: <mode>
+
+    Afternoon:
+    - Visit <place>
+
+    Evening:
+    - Activity / dinner
+
+    Repeat for ALL days.
+
+    ## 🚗 Travel Tips
+    - Tip 1
+    - Tip 2
+
+    IMPORTANT:
+    - Detect currency automatically
+    - DO NOT always use INR
+    - DO NOT skip any section
+
+  expected_output: >
+    Structured clean travel plan with itinerary and correct currency.
+
+  agent: planner
