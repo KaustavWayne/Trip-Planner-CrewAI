@@ -3,16 +3,19 @@ intent_mapper:
   goal: Extract travel intent
   backstory: Expert in analyzing travel queries
   llm: groq/llama-3.3-70b-versatile
-
+  #llm: ollama/llama3.2:3b
+ 
 researcher:
   role: Travel Researcher
   goal: Gather travel data using minimal tool calls
   backstory: Smart researcher who avoids multiple tool calls
   llm: groq/llama-3.3-70b-versatile
-  max_iter: 2
-
+  #llm: ollama/llama3.2:3b
+  
 planner:
   role: Travel Planner
   goal: Create structured itinerary
   backstory: Professional planner
   llm: groq/llama-3.3-70b-versatile
+  #llm: ollama/llama3.2:3b
+ 
