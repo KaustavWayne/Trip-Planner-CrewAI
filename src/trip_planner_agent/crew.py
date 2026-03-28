@@ -7,6 +7,20 @@ from trip_planner_agent.tools.tavily_tool import search_web
 
 load_dotenv()
 
+# from crewai import LLM
+
+# llm = LLM(
+#     model="ollama/llama3.2:3b",
+#     api_base="http://localhost:11434/v1",
+#     api_key="ollama"
+# )
+
+# Remove from agents.yaml if you use upper this code snippet
+
+# ❌ Remove this:
+
+# llm: ollama/llama3.2:3b
+
 
 @CrewBase
 class TravelCrew:
@@ -24,6 +38,7 @@ class TravelCrew:
     def intent_mapper(self):
         return Agent(
             config=self.agents_config["intent_mapper"],
+            #llm=llm,
             verbose=True
         )
 
@@ -31,6 +46,7 @@ class TravelCrew:
     def researcher(self):
         return Agent(
             config=self.agents_config["researcher"],
+            #llm=llm,
             tools=[search_web],
             verbose=True,
             max_iter=2
@@ -40,6 +56,7 @@ class TravelCrew:
     def planner(self):
         return Agent(
             config=self.agents_config["planner"],
+            #llm=llm,
             verbose=True
         )
 
