@@ -64,22 +64,24 @@ class TravelCrew:
     @task
     def intent_task(self):
         return Task(
-            config=self.tasks_config["intent_task"],
-            agent=self.intent_mapper()
+            config=self.tasks_config["intent_task"]
+            #agent=self.intent_mapper()
         )
 
     @task
     def research_task(self):
         return Task(
             config=self.tasks_config["research_task"],
-            agent=self.researcher()
+            #agent=self.researcher()
+            context=[self.intent_task()]
         )
 
     @task
     def planning_task(self):
         return Task(
             config=self.tasks_config["planning_task"],
-            agent=self.planner()
+            #agent=self.planner()
+            context=[self.research_task()]
         )
 
     # ---------- CREW ----------
